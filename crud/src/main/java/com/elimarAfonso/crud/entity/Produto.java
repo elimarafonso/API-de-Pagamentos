@@ -46,7 +46,7 @@ public class Produto implements Serializable {
 
 	
 	//recebe um ProdutoVO e retorna um Produto
-	public static Produto create (ProdutoVO produtoVO) {
+	public static Produto create(ProdutoVO produtoVO) {
 		return new ModelMapper().map(produtoVO,Produto.class);
 	}
 }
