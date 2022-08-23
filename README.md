@@ -1,2 +1,2 @@
-# API-de-Pagamentos
-(até o dia 22/08 realizarei o commint do projeto completo)
+# API-RESTful-de-Pagamentos
+## Colocando em prática conhecimentos de Microservices.
