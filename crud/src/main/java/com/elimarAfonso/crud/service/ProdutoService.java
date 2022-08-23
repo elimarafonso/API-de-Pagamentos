@@ -1,6 +1,5 @@
 package com.elimarAfonso.crud.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,21 +8,27 @@ import org.springframework.stereotype.Service;
 import com.elimarAfonso.crud.dataVO.ProdutoVO;
 import com.elimarAfonso.crud.entity.Produto;
 import com.elimarAfonso.crud.exception.ResourceNotFoundException;
+import com.elimarAfonso.crud.message.ProdutoSendMessage;
 import com.elimarAfonso.crud.repository.ProdutoRepository;
 
 @Service
 public class ProdutoService {
 
 	private final ProdutoRepository produtoRepository;
+	private final ProdutoSendMessage produtoSendMessage;
 
 	@Autowired
-	public ProdutoService(ProdutoRepository produtoRepository) {
+	public ProdutoService(ProdutoRepository produtoRepository, ProdutoSendMessage produtoSendMessage) {
 		this.produtoRepository = produtoRepository;
+		this.produtoSendMessage = produtoSendMessage;
 	}
 
 	/* CRIA UM NOVO PRODUTO */
 	public ProdutoVO create(ProdutoVO produtoVO) {
 		ProdutoVO produtoVORetorno = ProdutoVO.create(produtoRepository.save(Produto.create(produtoVO)));
+		//mandando pra fila do rabbitmq
+		produtoSendMessage.sendMessage(produtoVO);
+		
 		return produtoVORetorno;
 	}
 
