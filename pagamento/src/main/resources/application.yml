@@ -1,0 +1,25 @@
+
+server:
+  port: 8082
+  servlet:
+    context-path: /pagamento
+    
+spring:
+  application:
+    name: crud
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+   
+  jmx:
+    enabled: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/pagamento?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: root
+    
+      
