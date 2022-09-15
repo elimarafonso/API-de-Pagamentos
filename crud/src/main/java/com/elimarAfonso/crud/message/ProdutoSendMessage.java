@@ -9,7 +9,7 @@ import com.elimarAfonso.crud.dataVO.ProdutoVO;
 
 @Component
 public class ProdutoSendMessage {
-
+/*CLASSE RESPONSÁVEL POR COLOCAR/PRODUZIR A MENSAGEM NA EXCHANGE*/
 	@Value("${crud.rabbitmq.exchange}")
 	String exchange;
 

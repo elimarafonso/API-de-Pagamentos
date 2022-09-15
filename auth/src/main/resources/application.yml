@@ -1,12 +1,11 @@
-
 server:
-  port: 8082
+  port: 8083
   servlet:
-    context-path: /pagamento
-    
+    context-path: /auth
+
 spring:
   application:
-    name: pagamento
+    name: auth
   jpa:
     show-sql: true
     hibernate:
@@ -14,31 +13,18 @@ spring:
     properties:
       hibernate:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-   
   jmx:
     enabled: false
   datasource:
-    url: jdbc:mysql://localhost:3306/pagamento?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/auth?useTimezone=true&serverTimezone=UTC
     username: root
     password: root
-    
-#configurando o rabbitmq
 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
- 
-crud:
-  rabbitmq:
-    exchange: crud.exchange
-    queue: crud.produto.queue #fila que o microserviço escuta 
-    
 security:
   jwt:
     token:
       secret-key: chave_microservices
+      expire-length: 360000
 
 eureka:
   instance:

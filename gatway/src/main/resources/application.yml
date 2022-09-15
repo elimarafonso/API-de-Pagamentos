@@ -1,0 +1,43 @@
+server:
+  port: 9000
+    
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+      - id: auth
+        uri:
+          lb://auth
+        predicates:
+        - Path=/auth/**
+        
+      - id: crud
+        uri:
+          lb://crud
+        predicates:
+        - Path=/crud/**        
+
+      - id: pagamento
+        uri:
+          lb://pagamento
+        predicates:
+        - Path=/pagamento/**
+                
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/registry/eureka/
+
+
+    
+
+
+   
+
+        
+        
